@@ -15,8 +15,20 @@
 // It should print "Building one COLOR TRIM MODEL with the following options: OPTIONS", i.e: "Building one red Sport Mazda3 with the following options: heated seats, rear spoiler"
 
 // Create the Factory class bellow:
-
-
+class Factory{
+  constructor(make = "mazda", location = "USA", airbags = true, abs = true, warranty = "60,000 miles/3 years"){
+    this.make = make;
+    this.location = location;
+    this.airbags = airbags;
+    this.warranty = warranty;
+    }
+    massBuild(car, quantity){
+      console.log("Building " + quantity + " " + car.color + " " + car.trim + " " + car.model + "'s" );
+    }
+    customerBuild(car, color){
+      console.log("Building one " + color +" "+ car.trim + " " + car.model + " with the following options: " );
+    }
+};
 
 
 // CREATE A SUB-CLASS CALLED CAR
@@ -25,8 +37,25 @@
 // It should specifically inherit the warranty property from Factory so we can modify it.
 // Car should also have the following additional properties: enginesize (4), navigation (true), backupcamera (true), warranty (100,000 miles / 5 years)
 // Write your code below:
-
-
+class Car extends Factory{
+  constructor(model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof, enginesize, navigation, backupcamera, warranty){
+    super(warranty);
+    this.model = model;
+    this.doors = doors;
+    this.color = color;
+    this.enginetype = enginetype;
+    this.transmission = transmission;
+    this.trim = trim;
+    this.wheelstrim = wheelstrim;
+    this.audio = audio;
+    this.seatstrim = seatstrim;
+    this.moonroof = moonroof;
+    this.enginesize = 4;
+    this.navigation = true;
+    this.backupcamera = true;
+    this.warranty = "100,000 miles/5 years";
+  }
+}
 
 
 // CREATE A SUB-CLASS CALLED SPORT
@@ -34,8 +63,20 @@
 // The constructor should have the following properties: model, trim, transmission, top, color, seatstrim, audio, wheelstrim. The values should be specified when creating an instance of Sport.
 // Sports cars should also have the following additional properties: moonroof (false), enginetype (gasoline), convertible (true), doors (2)
 // Write your code below:
+class Sport extends Car{
+  constructor(model, trim, transmission, top, color, seatstrim, audio, wheelstrim, moonroof, enginetype, convertible, doors){
+    super(model, trim, transmission, top, color, seatstrim, audio, wheelstrim);
+    this.moonroof = false;
+    this.enginetype = "gasoline";
+    this.convertible = true;
+    this.doors = 2;
+  }
+}
 
 
+let sport = new Sport();
+
+console.log(sport);
 
 
 // CREATE A SUB-CLASS CALLED TRUCK
@@ -45,9 +86,30 @@
 // Truck should also have the following properties, standard: backupcamera (true), audio (basic)
 // It should also inherit the warranty property so we can extend it to: 150,000 miles / 6 years.
 // Write your code below:
+class Truck extends Factory{
+  constructor(model, color, enginesize, hitch, bed, navigation, backupcamera, audio, warranty){
+    super(warranty);
+    this.model = model;
+    this.color = color;
+    this.enginesize = enginesize;
+    this.hitch = hitch;
+    this.bed = bed;
+    this.navigation = navigation;
+    this.backupcamera = true;
+    this.audio = "basic";
+    this.warranty = "150,000 miles/6 years"
+  }
+}
 
 
 
+
+
+
+
+
+let truck = new Truck();
+console.log(truck);
 
 // LET'S BUILD SOME CARS AND TRUCKS!
 
@@ -56,12 +118,14 @@
 // The following properties must be specified: model (mazda3), color (red), enginetype (hybrid), transmission (automatic), trim (touring), wheels (base), audio (premium), seats (leather), and moonroof (true)
 
 // Write your 'mazda3' instance below:
+let mazda3 = new Car("mazda3", "2", "red", "hybrid", "automatic", "touring", "base", "premium", "leather", true);
+
 
 
 // Print mazda3. I should have all the above properties.
 // Write your code below:
 
-
+console.log(mazda3);
 
 
 
@@ -70,6 +134,7 @@
 // Write your code below:
 
 
+mazda3.massBuild(mazda3, 35000);
 
 
 
@@ -77,7 +142,7 @@
 // It should read: "Building one yellow Touring Mazda3 with the following options: weather package, satellite radio, rear spoiler"
 // Write your code below:
 
-
+mazda3.customerBuild(mazda3, "yellow");
 
 
 
@@ -88,13 +153,13 @@
 // Write your 'miataRf' instance below:
 // Write your code below:
 
+let miataRf = new Sport("Miata-RF", "Grand Touring", "manual", "hard top", "red", "leather", "premium", "premium");
 
-
-
+// model, trim, transmission, top, color, seatstrim, audio, wheelstrim, moonroof, enginetype, convertible, doors
 
 // Print miataRf. It should have all of the above properties. Plus, the extended warranty.
 // Write your code below:
-
+console.log(miataRf);
 
 
 
